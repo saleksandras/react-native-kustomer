@@ -1,0 +1,25 @@
+{
+    "name": "react-native-kustomer",
+    "version": "0.0.1",
+    "description": "Kustomer.com integration for React Native on Android and iOS.",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/saleksandras/react-native-kustomer.git"
+    },
+    "keywords": [
+        "react-native",
+        "android",
+        "ios",
+        "kustomer"
+    ],
+    "authors": [
+        "saleksandras"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/saleksandras/react-native-kustomer/issues"
+    },
+    "homepage": "https://github.com/saleksandras/react-native-kustomer#readme",
+    "dependencies": {}
+}
