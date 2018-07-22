@@ -26,17 +26,83 @@ yarn add react-native-kustomer
 ```
 
 
-## Installation
+The Kustomer SDK requires a valid API Key with role `org.tracking`. See [Getting Started - Create an API Key](https://dev.kustomer.com/v1/getting-started)
 
 
 ### iOS
-Follow [The Kustomer iOS SDK Installation Guide](https://github.com/kustomer/customer-ios/blob/master/README.md)
+
+#### Kustomer SDK
+
+##### CocoaPods
+
+The preferred installation method is with [CocoaPods](https://cocoapods.org). Add the following to your `Podfile`:
+
+```ruby
+pod 'Kustomer', :git => 'https://github.com/kustomer/customer-ios.git', :tag => '0.1.11'
+```
+
+##### Carthage
+
+For [Carthage](https://github.com/Carthage/Carthage), add the following to your `Cartfile`:
+
+```ogdl
+github "kustomer/customer-ios" ~> 0.1.11
+```
+
+#### RNKustomerModule
+
+1. Drang an drop `RNKustomerModule.xcodeproj` to your workspace
+2. [Link target](https://help.apple.com/xcode/mac/current/#/dev51a648b07) to `libRNKustomerModule.a` library
+
+##### Setup
+
+In your project's UIApplicationDelegate:
+```objective-c
+#import <Kustomer/Kustomer.h>
+
+static NSString *const kKustomerAPIKey = @"YOUR_API_KEY";
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [Kustomer initializeWithAPIKey:kKustomerAPIKey];
+    return YES;
+}
+```
+
+For more follow [The Kustomer iOS SDK Installation Guide](https://github.com/kustomer/customer-ios/blob/master/README.md)
 
 
 ### Android
 Follow [The Kustomer Android SDK Installation Guide](https://github.com/kustomer/customer-android/blob/master/README.md)
 
 
+#### Gradle
+
+Include the library in your `app.gradle`:
+
+```gradle
+compile 'com.kustomer.kustomersdk:kustomersdk:0.1.2'
+```
+
+or if you're using `gradle v3 or higher
+
+```gradle
+implementation 'com.kustomer.kustomersdk:kustomersdk:0.1.2'
+```
+
+#### Or through Maven
+
+```xml
+<dependency>
+  <groupId>com.kustomer.kustomersdk</groupId>
+  <artifactId>kustomersdk</artifactId>
+  <version>0.1.2</version>
+  <type>pom</type>
+</dependency>
+```
+
+
+#### Setup
 
 Include the library in your `android/app/build.gradle`
 
@@ -47,14 +113,35 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:23.0.1"
     implementation "com.facebook.react:react-native:0.29.+"
+    implementation 'com.kustomer.kustomersdk:kustomersdk:0.1.2' // <--- add this
     implementation project(":react-native-kustomer") // <--- add this
 }
 ```
 
 
-## Installation
+1. In your project's MainApplication Class:
+```java
+import com.kustomer.kustomersdk.Kustomer; // <--- import
+import lt.miror.kustomer.KustomerPackage; // <--- import
+
+private static final String K_KUSTOMER_API_KEY = "YOUR_API_KEY"; // <--- add this
 
 
+@Override
+protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(
+        new MainReactPackage(),
+        new KustomerPackage() // <--- add this line
+    );
+}
+
+@Override
+public void onCreate() {
+    super.onCreate();
+    SoLoader.init(this, /* native exopackage */ false);
+    Kustomer.init(this, K_KUSTOMER_API_KEY); // <--- add this
+}
+```
 
 ### Register Module (in MainActivity.java)
 
@@ -67,31 +154,6 @@ protected List<ReactPackage> getPackages() {
         new RNKustomerPackage() // <--- add this line to yout MainActivity class
     );
 }
-```
-
-### Register Module (in MainApplication.java)
-
-```java
-import com.kustomer.kustomersdk.Kustomer; // <--- import
-import lt.miror.kustomer.KustomerPackage; // <--- import
-
-
-private static final String K_KUSTOMER_API_KEY = "your_api_key"; // <--- add this line to yout MainApplication class
-
-@Override
-protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(
-        new MainReactPackage(),
-        new KustomerPackage() // <--- add this line to yout MainApplication class
-    );
-}
-
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
-    Kustomer.init(this, K_KUSTOMER_API_KEY); // <--- add this line to yout MainApplication class
-  }
 ```
 
 ## Usage

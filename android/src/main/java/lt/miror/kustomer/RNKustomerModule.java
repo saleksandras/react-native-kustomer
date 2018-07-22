@@ -13,13 +13,13 @@ import com.facebook.react.bridge.ReactMethod;
 
 public class RNKustomerModule extends ReactContextBaseJavaModule {
 
-  public KustomerModule(ReactApplicationContext reactContext) {
+  public RNKustomerModule(ReactApplicationContext reactContext) {
     super(reactContext);
   }
 
   @Override
   public String getName() {
-    return "KustomerModule";
+    return "RNKustomerModule";
   }
 
   @ReactMethod

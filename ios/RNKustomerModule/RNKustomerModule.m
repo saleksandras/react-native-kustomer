@@ -1,13 +1,15 @@
 //
-//  RCTKustomerModule.m
+//  RNKustomerModule.m
+//  RNKustomerModule
 //
-//  Created by Aleksandras Smirnovas on 18/07/2018.
+//  Created by Aleksandras Smirnovas on 22/07/2018.
+//  Copyright © 2018 Miror MB. All rights reserved.
 //
 
-#import "RCTKustomerModule.h"
+#import "RNKustomerModule.h"
 #import <Kustomer/Kustomer.h>
 
-@implementation RCTKustomerModule
+@implementation RNKustomerModule
 
 RCT_EXPORT_MODULE();
 
@@ -41,12 +43,5 @@ RCT_EXPORT_METHOD(setCurrentPageName:(NSString *) pageName)
     [Kustomer setCurrentPageName:pageName];
 }
 
-
-// RCT_EXPORT_METHOD(isChatAvailable)
-// {
-//     [Kustomer isChatAvailable:^(BOOL success, BOOL enabled) {
-//         return enabled;
-//     }];
-// }
 
 @end
