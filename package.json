@@ -1,6 +1,6 @@
 {
     "name": "react-native-kustomer",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Kustomer.com integration for React Native on Android and iOS.",
     "main": "index.js",
     "repository": {

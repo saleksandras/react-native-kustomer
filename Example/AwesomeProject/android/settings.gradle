@@ -1,0 +1,7 @@
+rootProject.name = 'AwesomeProject'
+
+include ':app'
+
+
+include ':react-native-kustomer'
+project(':react-native-kustomer').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-kustomer/android')

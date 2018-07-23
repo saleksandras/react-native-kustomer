@@ -73,8 +73,6 @@ For more follow [The Kustomer iOS SDK Installation Guide](https://github.com/kus
 
 
 ### Android
-Follow [The Kustomer Android SDK Installation Guide](https://github.com/kustomer/customer-android/blob/master/README.md)
-
 
 #### Gradle
 
@@ -119,10 +117,18 @@ dependencies {
 ```
 
 
+Include the library in your `android/settings.gradle`
+
+```gradle
+include ':react-native-kustomer'
+project(':react-native-kustomer').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-kustomer/android')
+```
+
+
 1. In your project's MainApplication Class:
 ```java
 import com.kustomer.kustomersdk.Kustomer; // <--- import
-import lt.miror.kustomer.KustomerPackage; // <--- import
+import lt.miror.kustomer.RNKustomerPackage; // <--- import
 
 private static final String K_KUSTOMER_API_KEY = "YOUR_API_KEY"; // <--- add this
 
@@ -131,7 +137,7 @@ private static final String K_KUSTOMER_API_KEY = "YOUR_API_KEY"; // <--- add thi
 protected List<ReactPackage> getPackages() {
     return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
-        new KustomerPackage() // <--- add this line
+        new RNKustomerPackage() // <--- add this line
     );
 }
 
@@ -146,7 +152,7 @@ public void onCreate() {
 ### Register Module (in MainActivity.java)
 
 ```java
-import lt.miror.kustomer.KustomerPackage; // <--- import
+import lt.miror.kustomer.RNKustomerPackage; // <--- import
 
 protected List<ReactPackage> getPackages() {
     return Arrays.<ReactPackage>asList(
@@ -155,6 +161,21 @@ protected List<ReactPackage> getPackages() {
     );
 }
 ```
+
+##### Declaring Activities
+
+5. Add `KUSSessionsActivity` & `KUSChatActivity` into your `AndroidManifest.xml`
+```xml
+<activity android:name="com.kustomer.kustomersdk.Activities.KUSSessionsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/KUSAppTheme" />
+
+<activity android:name="com.kustomer.kustomersdk.Activities.KUSChatActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/KUSAppTheme" />
+```
+
+For more follow  [The Kustomer Android SDK Installation Guide](https://github.com/kustomer/customer-android/blob/master/README.md)
 
 ## Usage
 
