@@ -1,8 +1,5 @@
 # react-native-kustomer
 
-[![i:npm]][l:npm]
-
-
 [Kustomer.com](https://www.kustomer.com) integration for React Native.
 
 
