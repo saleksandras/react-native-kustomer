@@ -1,4 +1,8 @@
 # react-native-kustomer
+
+[![i:npm]][l:npm]
+
+
 [Kustomer.com](https://www.kustomer.com) integration for React Native.
 
 
@@ -38,7 +42,7 @@ The Kustomer SDK requires a valid API Key with role `org.tracking`. See [Getting
 The preferred installation method is with [CocoaPods](https://cocoapods.org). Add the following to your `Podfile`:
 
 ```ruby
-pod 'Kustomer', :git => 'https://github.com/kustomer/customer-ios.git', :tag => '0.1.11'
+pod 'Kustomer', :git => 'https://github.com/kustomer/customer-ios.git', :tag => '0.1.25'
 ```
 
 ##### Carthage
@@ -46,13 +50,20 @@ pod 'Kustomer', :git => 'https://github.com/kustomer/customer-ios.git', :tag => 
 For [Carthage](https://github.com/Carthage/Carthage), add the following to your `Cartfile`:
 
 ```ogdl
-github "kustomer/customer-ios" ~> 0.1.11
+github "kustomer/customer-ios" ~> 0.1.25
 ```
 
 #### RNKustomerModule
 
 1. Drang an drop `RNKustomerModule.xcodeproj` to your workspace
 2. [Link target](https://help.apple.com/xcode/mac/current/#/dev51a648b07) to `libRNKustomerModule.a` library
+
+
+<!-- You also need to add `RNKustomerModule` to `Build Settings > Search Paths > Header Search Paths` as a **`recursive`** search path, adding the following to both `Debug` and `Release` and ensuring `recursive` is selected (double click each line as opposed to editing it as text, and you'll see the dropdowns):
+
+```
+$(SRCROOT)/../node_modules/react-native-kustomer/ios/RNKustomerModule
+``` -->
 
 ##### Setup
 
@@ -104,15 +115,15 @@ implementation 'com.kustomer.kustomersdk:kustomersdk:0.1.2'
 
 Include the library in your `android/app/build.gradle`
 
-```gradle
+```diff
 apply plugin: "com.android.application"
 ...
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:23.0.1"
     implementation "com.facebook.react:react-native:0.29.+"
-    implementation 'com.kustomer.kustomersdk:kustomersdk:0.1.2' // <--- add this
-    implementation project(":react-native-kustomer") // <--- add this
++   implementation 'com.kustomer.kustomersdk:kustomersdk:0.1.2' // <--- add this
++   implementation project(":react-native-kustomer") // <--- add this
 }
 ```
 
@@ -126,18 +137,18 @@ project(':react-native-kustomer').projectDir = new File(rootProject.projectDir, 
 
 
 1. In your project's MainApplication Class:
-```java
-import com.kustomer.kustomersdk.Kustomer; // <--- import
-import lt.miror.kustomer.RNKustomerPackage; // <--- import
+```diff
++ import com.kustomer.kustomersdk.Kustomer; // <--- import
++ import lt.miror.kustomer.RNKustomerPackage; // <--- import
 
-private static final String K_KUSTOMER_API_KEY = "YOUR_API_KEY"; // <--- add this
++ private static final String K_KUSTOMER_API_KEY = "YOUR_API_KEY"; // <--- add this
 
 
 @Override
 protected List<ReactPackage> getPackages() {
     return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
-        new RNKustomerPackage() // <--- add this line
++       new RNKustomerPackage() // <--- add this line
     );
 }
 
@@ -145,19 +156,19 @@ protected List<ReactPackage> getPackages() {
 public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
-    Kustomer.init(this, K_KUSTOMER_API_KEY); // <--- add this
++   Kustomer.init(this, K_KUSTOMER_API_KEY); // <--- add this
 }
 ```
 
 ### Register Module (in MainActivity.java)
 
-```java
+```diff
 import lt.miror.kustomer.RNKustomerPackage; // <--- import
 
 protected List<ReactPackage> getPackages() {
     return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
-        new RNKustomerPackage() // <--- add this line to yout MainActivity class
++       new RNKustomerPackage() // <--- add this line to yout MainActivity class
     );
 }
 ```
@@ -203,3 +214,9 @@ KustomerModule.identify("SECURE_ID_HASH");
 [Kustomer setCurrentPageName:@"Home"];
 
 ```
+
+## Testing npm packages before publishing
+
+- `npm pack`
+- `cp package-name-0.0.0.tgz ~`
+- `npm install ~/package-name-0.0.0.tgz`
