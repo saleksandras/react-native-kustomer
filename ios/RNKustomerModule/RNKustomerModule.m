@@ -8,7 +8,6 @@
 #import "RNKustomerModule.h"
 #import <Kustomer/Kustomer.h>
 @implementation RNKustomerModule
-RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(presentSupport)
 {
   dispatch_async(dispatch_get_main_queue(), ^{
