@@ -15,32 +15,45 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(presentSupport)
 {
+  dispatch_async(dispatch_get_main_queue(), ^{
     [Kustomer presentSupport];
+  });
 }
 
 RCT_EXPORT_METHOD(presentKnowledgeBase)
 {
+  dispatch_async(dispatch_get_main_queue(), ^{
     [Kustomer presentKnowledgeBase];
+  });
 }
 
 RCT_EXPORT_METHOD(presentCustomWebPage:(NSString *) url)
 {
-    [Kustomer presentCustomWebPage:url];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [Kustomer presentKnowledgeBase:url];
+  });
+    
 }
 
 RCT_EXPORT_METHOD(resetTracking)
 {
+  dispatch_async(dispatch_get_main_queue(), ^{
     [Kustomer resetTracking];
-}
+  });}
 
 RCT_EXPORT_METHOD(identify:(NSString *) hash)
 {
+  dispatch_async(dispatch_get_main_queue(), ^{
     [Kustomer identify:hash];
+  });}
+
 }
 
 RCT_EXPORT_METHOD(setCurrentPageName:(NSString *) pageName)
 {
-    [Kustomer setCurrentPageName:pageName];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [Kustomer setCurrentPageName:pageName];
+     });}
 }
 
 
